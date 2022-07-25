@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.calcScreen {
+  font-size: 70;
+  width: 100%;
+  text-align: right;
+}
+
+body {
+  background-color: #ffdee0;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonCon {
+  position: absolute;
+  margin-top: 100px;
+  height: 500px;
+  width: 500px;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  background-color: aquamarine;
+}
+
+.button {
+  height: 50px;
+  width: 100px;
+}
+
+.calcBody {
+  margin: 10vh;
+  height: 600px;
+  width: 500px;
+  background-color: gray;
+  position: relative;
+  border-radius: 5%;
+}
+
+.calcScreen {
+  border-radius: 2%;
+  position: absolute;
+  background-color: lightgray;
+  height: 100px;
+  width: 500px;
+  margin: 0;
+}
