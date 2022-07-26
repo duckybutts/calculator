@@ -8,6 +8,8 @@
   font-size: 70;
   width: 100%;
   text-align: right;
+  border: black 2px solid;
+  border-radius: 5%;
 }
 
 body {
@@ -24,6 +26,8 @@ body {
   border-bottom-left-radius: 5%;
   border-bottom-right-radius: 5%;
   background-color: aquamarine;
+  border: black 2px solid;
+  border-top: none;
 }
 
 .button {
