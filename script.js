@@ -5,8 +5,10 @@ let division = document.querySelector(".divide");
 let numberBtn = document.querySelectorAll(".number");
 let operatorBtn = document.querySelectorAll(".operator");
 let computeBtn = document.querySelector(".equals");
+let decimalBtn = document.querySelector(".decimal");
 let calcResult = document.querySelector(".resultScreen");
 let clearBtn = document.querySelector(".clear");
+let backBtn = document.querySelector(".back");
 
 let numA = [];
 let numB = [];
@@ -16,15 +18,29 @@ let sign;
 let displayValue;
 let displayValueB;
 
+backBtn.addEventListener("click", function () {
+  if (typeof operator == "undefined") {
+    numA.pop();
+    console.log(numA);
+    displayValue = numA.join("");
+    calcResult.textContent = displayValue;
+  } else if (typeof operator !== "undefined") {
+    numB.pop();
+    console.log(numB);
+    displayValueB = numB.join("");
+    calcResult.textContent = `${displayValue} ${sign} ${displayValueB}`;
+  }
+});
+
 numberBtn.forEach(function (button) {
   button.addEventListener("click", function () {
     if (typeof operator == "undefined") {
       if (numA.length < 4) {
         //want max length userNum = 4
         numA.push(button.textContent);
-        displayValue = numA.join("");
-        calcResult.textContent = displayValue;
       }
+      displayValue = numA.join("");
+      calcResult.textContent = displayValue;
       console.log(`numA = ${numA}`); //join later
     } else if (typeof operator !== "undefined") {
       if (numB.length < 4) {
@@ -36,6 +52,12 @@ numberBtn.forEach(function (button) {
       calcResult.textContent = `${displayValue} ${sign} ${displayValueB}`;
     }
   });
+});
+
+decimalBtn.addEventListener("click", function () {
+  if (typeof operator == "undefined") {
+    numA.push(decimalBtn.textContent);
+  } else numB.push(decimalBtn.textContent);
 });
 
 getOperator();
