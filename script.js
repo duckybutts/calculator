@@ -4,12 +4,14 @@ let multiplication = document.querySelector(".mult");
 let division = document.querySelector(".divide");
 let numberBtn = document.querySelectorAll(".number");
 let operatorBtn = document.querySelectorAll(".operator");
+let computeBtn = document.querySelector(".equals");
+let userInput = document.querySelector(".calcScreen");
+let calcResult = document.querySelector(".resultScreen");
 
 let numA = [];
 let numB = [];
 let operator;
-
-getOperator();
+let result;
 
 numberBtn.forEach(function (button) {
   button.addEventListener("click", function () {
@@ -29,6 +31,8 @@ numberBtn.forEach(function (button) {
   });
 });
 
+getOperator();
+
 function getOperator() {
   operatorBtn.forEach(function (button) {
     button.addEventListener("click", function () {
@@ -41,23 +45,41 @@ function getOperator() {
       } else if (button.textContent == "/") {
         operator = "division";
       }
-      return operator;
+      return console.log(operator);
     });
   });
 }
 
-// function add(a, b) {
-//   return a + b;
-// }
+computeBtn.addEventListener("click", function operate() {
+  if (typeof numA == "object") {
+    numA = numA.join("");
+  }
+  numA = parseFloat(numA);
+  console.log(numA);
+  numB = numB.join("");
+  numB = parseFloat(numB);
+  console.log(numB);
 
-// function subtract(a, b) {
-//   return a - b;
-// }
+  if (operator == "addition") {
+    console.log("addition");
+    result = add(numA, numB);
+  } else if (operator == "subtraction") {
+    console.log("subtraction");
+    result = subtract(numA, numB);
+  } else if (operator == "multiplication") {
+    console.log("multiplication");
+    result = multiply(numA, numB);
+  } else if (operator == "division") {
+    console.log("division");
+    result = divide(numA, numB);
+  }
+  calcResult.textContent = result;
+  numA = result;
+  numB = [];
+  return console.log(result);
+});
 
-// function multiply(a, b) {
-//   return a * b;
-// }
-
-// function divide(a, b) {
-//   return a / b;
-// }
+let add = (a, b) => a + b;
+let subtract = (a, b) => a - b;
+let multiply = (a, b) => a * b;
+let divide = (a, b) => a / b;
