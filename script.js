@@ -17,6 +17,7 @@ let result;
 let sign;
 let displayValue;
 let displayValueB;
+let unrounded;
 
 backBtn.addEventListener("click", function () {
   if (typeof operator == "undefined") {
@@ -95,7 +96,11 @@ computeBtn.addEventListener("click", calculate);
 let add = (a, b) => a + b;
 let subtract = (a, b) => a - b;
 let multiply = (a, b) => a * b;
-let divide = (a, b) => a / b;
+let divide = (a, b) => {
+  if (b == 0) {
+    return "ERROR";
+  } else return a / b;
+};
 
 clearBtn.addEventListener("click", function () {
   reset();
@@ -122,20 +127,33 @@ function calculate() {
 
   if (operator == "addition") {
     console.log("addition");
-    result = add(numA, numB);
+    unrounded = add(numA, numB);
+    getroundedNum();
   } else if (operator == "subtraction") {
     console.log("subtraction");
-    result = subtract(numA, numB);
+    unrounded = add(numA, numB);
+    getroundedNum();
   } else if (operator == "multiplication") {
     console.log("multiplication");
-    result = multiply(numA, numB);
+    unrounded = multiply(numA, numB);
+    getroundedNum();
   } else if (operator == "division") {
     console.log("division");
-    result = divide(numA, numB);
+    unrounded = divide(numA, numB);
+    getroundedNum();
   }
   calcResult.textContent = result;
   numA = result;
   displayValue = result;
   reset();
   return console.log(result);
+}
+function getroundedNum() {
+  let toRound = unrounded.toString().length;
+  console.log(toRound);
+  if (toRound >= 6) {
+    unrounded = unrounded.toFixed(4);
+  }
+  result = unrounded;
+  return result;
 }
