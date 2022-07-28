@@ -4,6 +4,75 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #ffdee0;
+  display: flex;
+  justify-content: center;
+}
+
+.calcBody {
+  margin: 10vh;
+  height: 70vh;
+  width: 50vh;
+  background-color: lightpink;
+  border-radius: 10%;
+  border: 2px black solid;
+}
+
+.calcScreen {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.resultScreen {
+  margin: 4vh;
+  height: 10.5vh;
+  width: 42vh;
+  border-top-left-radius: 4vh;
+  border-top-right-radius: 4vh;
+  background-color: white;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  border: 2px black solid;
+}
+
+.results {
+  margin: 4vh 1vh 0vh;
+  font-size: 6vh;
+}
+
+.buttonCon {
+  margin-top: 1vh;
+  height: 60vh;
+  width: 60vh;
+  position: absolute;
+  padding: 1vh 2vh;
+}
+
+.button {
+  margin: 0.5vh;
+  width: 10vh;
+  height: 8vh;
+  font-weight: bolder;
+  font-size: 3.5vh;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 2vh;
+}
+.clear {
+  width: 21.5vh;
+}
+.back {
+  width: 21.5vh;
+}
+
+.button:hover {
+  background-color: aliceblue;
+}
+
+/* 
 .calcScreen {
   font-size: 70;
   width: 100%;
@@ -12,11 +81,6 @@
   border-radius: 5%;
 }
 
-body {
-  background-color: #ffdee0;
-  display: flex;
-  justify-content: center;
-}
 
 .buttonCon {
   position: absolute;
@@ -42,13 +106,4 @@ body {
   background-color: gray;
   position: relative;
   border-radius: 5%;
-}
-
-.calcScreen {
-  border-radius: 2%;
-  position: absolute;
-  background-color: lightgray;
-  height: 100px;
-  width: 500px;
-  margin: 0;
-}
+} */

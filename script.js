@@ -6,7 +6,7 @@ let numberBtn = document.querySelectorAll(".number");
 let operatorBtn = document.querySelectorAll(".operator");
 let computeBtn = document.querySelector(".equals");
 let decimalBtn = document.querySelector(".decimal");
-let calcResult = document.querySelector(".resultScreen");
+let calcResult = document.querySelector(".results");
 let clearBtn = document.querySelector(".clear");
 let backBtn = document.querySelector(".back");
 
@@ -20,6 +20,10 @@ let displayValueB;
 let unrounded;
 
 backBtn.addEventListener("click", function () {
+  useBackBtn();
+});
+
+function useBackBtn() {
   if (typeof operator == "undefined") {
     numA.pop();
     console.log(numA);
@@ -31,62 +35,73 @@ backBtn.addEventListener("click", function () {
     displayValueB = numB.join("");
     calcResult.textContent = `${displayValue} ${sign} ${displayValueB}`;
   }
-});
+}
 
 numberBtn.forEach(function (button) {
   button.addEventListener("click", function () {
-    if (typeof operator == "undefined") {
-      if (numA.length < 4) {
-        //want max length userNum = 4
-        numA.push(button.textContent);
-      }
-      displayValue = numA.join("");
-      calcResult.textContent = displayValue;
-      console.log(`numA = ${numA}`); //join later
-    } else if (typeof operator !== "undefined") {
-      if (numB.length < 4) {
-        //want max length userNum = 4
-        numB.push(button.textContent);
-        displayValueB = numB.join("");
-      }
-      console.log(`numB = ${numB}`); //join later
-      calcResult.textContent = `${displayValue} ${sign} ${displayValueB}`;
-    }
+    useNumBtn(button);
   });
 });
 
+function useNumBtn(button) {
+  if (typeof operator == "undefined") {
+    if (numA.length < 4) {
+      //want max length userNum = 4
+      numA.push(button.textContent);
+    }
+    displayValue = numA.join("");
+    calcResult.textContent = displayValue;
+    console.log(`numA = ${numA}`); //join later
+  } else if (typeof operator !== "undefined") {
+    if (numB.length < 4) {
+      numB.push(button.textContent);
+      displayValueB = numB.join("");
+    }
+    console.log(`numB = ${numB}`); //join later
+    calcResult.textContent = `${displayValue} ${sign} ${displayValueB}`;
+  }
+}
+
 decimalBtn.addEventListener("click", function () {
+  useDecimalBtn();
+});
+
+function useDecimalBtn() {
   if (typeof operator == "undefined") {
     numA.push(decimalBtn.textContent);
   } else numB.push(decimalBtn.textContent);
-});
+}
 
 getOperator();
+
+function useOperatorBtn(button) {
+  if (operator !== undefined) {
+    calculate();
+  }
+  if (button.textContent == "+") {
+    calcResult.textContent = `${displayValue} +`;
+    operator = "addition";
+    sign = "+";
+  } else if (button.textContent == "-") {
+    calcResult.textContent = `${displayValue} -`;
+    operator = "subtraction";
+    sign = "-";
+  } else if (button.textContent == "x") {
+    calcResult.textContent = `${displayValue} x`;
+    operator = "multiplication";
+    sign = "x";
+  } else if (button.textContent == "/") {
+    calcResult.textContent = `${displayValue} /`;
+    operator = "division";
+    sign = "/";
+  }
+  return console.log(operator);
+}
 
 function getOperator() {
   operatorBtn.forEach(function (button) {
     button.addEventListener("click", function () {
-      if (operator !== undefined) {
-        calculate();
-      }
-      if (button.textContent == "+") {
-        calcResult.textContent = `${displayValue} +`;
-        operator = "addition";
-        sign = "+";
-      } else if (button.textContent == "-") {
-        calcResult.textContent = `${displayValue} -`;
-        operator = "subtraction";
-        sign = "-";
-      } else if (button.textContent == "x") {
-        calcResult.textContent = `${displayValue} x`;
-        operator = "multiplication";
-        sign = "x";
-      } else if (button.textContent == "/") {
-        calcResult.textContent = `${displayValue} /`;
-        operator = "division";
-        sign = "/";
-      }
-      return console.log(operator);
+      useOperatorBtn(button);
     });
   });
 }
@@ -131,7 +146,7 @@ function calculate() {
     getroundedNum();
   } else if (operator == "subtraction") {
     console.log("subtraction");
-    unrounded = add(numA, numB);
+    unrounded = subtract(numA, numB);
     getroundedNum();
   } else if (operator == "multiplication") {
     console.log("multiplication");
@@ -148,6 +163,7 @@ function calculate() {
   reset();
   return console.log(result);
 }
+
 function getroundedNum() {
   let toRound = unrounded.toString().length;
   console.log(toRound);
