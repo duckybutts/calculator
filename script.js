@@ -45,7 +45,7 @@ numberBtn.forEach(function (button) {
 
 function useNumBtn(button) {
   if (typeof operator == "undefined") {
-    if (numA.length < 4) {
+    if (numA.length < 5) {
       //want max length userNum = 4
       numA.push(button.textContent);
     }
@@ -53,7 +53,7 @@ function useNumBtn(button) {
     calcResult.textContent = displayValue;
     console.log(`numA = ${numA}`); //join later
   } else if (typeof operator !== "undefined") {
-    if (numB.length < 4) {
+    if (numB.length < 5) {
       numB.push(button.textContent);
       displayValueB = numB.join("");
     }
@@ -69,7 +69,13 @@ decimalBtn.addEventListener("click", function () {
 function useDecimalBtn() {
   if (typeof operator == "undefined") {
     numA.push(decimalBtn.textContent);
-  } else numB.push(decimalBtn.textContent);
+    displayValue = numA.join("");
+    calcResult.textContent = displayValue;
+  } else if (typeof operator !== "undefined") {
+    numB.push(decimalBtn.textContent);
+    displayValueB = numB.join("");
+    calcResult.textContent = `${displayValue} ${sign} ${displayValueB}`;
+  }
 }
 
 getOperator();
@@ -167,8 +173,8 @@ function calculate() {
 function getroundedNum() {
   let toRound = unrounded.toString().length;
   console.log(toRound);
-  if (toRound >= 6) {
-    unrounded = unrounded.toFixed(4);
+  if (toRound >= 7) {
+    unrounded = unrounded.toFixed(5);
   }
   result = unrounded;
   return result;
